@@ -8,9 +8,10 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
 app.get('/', (req, res) => {
-  res.render('example', { 
-    title: 'View Engine Demo'
-}) 
+    res.sendFile(path.join(__dirname, 'login.html'));
+})
+app.get('/scopes', (req, res) => {
+  res.sendFile(path.join(__dirname, 'scopes.html'));
 })
 
 app.listen(port, () => {
