@@ -5,7 +5,6 @@ const port = 3000
 
 require('./api/token-exchange')(app)
 
-// View Engine Setup 
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
