@@ -20,7 +20,7 @@
                 window.location.assign
                 const data = await response.json();
                 const authCode = data.authCode
-                const redirectUri = `https://oauth-demo-1-ws.onrender.com/redirect?code=${authCode}`
+                const redirectUri = `https://oauth-demo-1.onrender.com/redirect?code=${authCode}`
                 window.location.assign(redirectUri)
             } catch (e) {
                 console.error(e)
