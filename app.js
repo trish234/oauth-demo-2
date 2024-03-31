@@ -6,9 +6,6 @@ const port = 3000
 require('./api/token-exchange')(app)
 require('./api/get-resource')(app)
 
-app.set('views', path.join(__dirname, 'views'))
-app.set('view engine', 'ejs')
-
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', (req, res) => {

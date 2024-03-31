@@ -14,13 +14,13 @@
         const allowButton = document.getElementById('allow-button');
         allowButton.addEventListener('click', async _ => {
             try{
-                const response = await fetch("http://localhost:3000/auth-code", {
+                const response = await fetch("https://oauth-demo-2-ws.onrender.com/auth-code", {
                     method: 'GET',
                 });
                 window.location.assign
                 const data = await response.json();
                 const authCode = data.authCode
-                const redirectUri = `http://localhost:3001/redirect?code=${authCode}`
+                const redirectUri = `https://oauth-demo-1-ws.onrender.com/redirect?code=${authCode}`
                 window.location.assign(redirectUri)
             } catch (e) {
                 console.error(e)
