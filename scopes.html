@@ -1,17 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Social Media Company</title>
+    <title>EcualyptusTalk</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
 </head>
 <body>
-    <script>
-        
-    </script>
-    <h1>Please sign in to Social Media Company </h1>
-    <p>By clicking 'Allow', Social Media Company will share your name and profile photo with Virtucon Industries</p>
+    <div class="header">EcualyptusTalk</div>
+    <h1>Allow KoalaWork to access your personal information?</h1>
+    <p>By clicking 'Allow', EcualyptusTalk will share your name and profile photo with KoalaWork</p>
     <button>Cancel</button>
-    <form action="http://localhost:3001/redirect">
-        <input type="submit" value="Allow" />
-    </form>
+    <button id="allow-button">Allow</button>
+    <script>
+        const allowButton = document.getElementById('allow-button');
+        allowButton.addEventListener('click', async _ => {
+            try{
+                const response = await fetch("http://localhost:3000/auth-code", {
+                    method: 'GET',
+                });
+                window.location.assign
+                const data = await response.json();
+                const authCode = data.authCode
+                const redirectUri = `http://localhost:3001/redirect?code=${authCode}`
+                window.location.assign(redirectUri)
+            } catch (e) {
+                console.error(e)
+            }
+        });
+
+    </script>
 </body>
 </html>

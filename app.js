@@ -4,9 +4,12 @@ const app = express()
 const port = 3000
 
 require('./api/token-exchange')(app)
+require('./api/get-resource')(app)
 
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
+
+app.use(express.static(__dirname + '/public'));
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'login.html'));
@@ -16,7 +19,7 @@ app.get('/scopes', (req, res) => {
 })
 
 app.get('/auth-code', (req, res) => {
-  return res.send('i_am_an_authorization_code_12345');
+  return res.send({"authCode": 'i_am_an_authorization_code_12345'});
 })
 
 app.post('/token-exchange', (req, res) => {
