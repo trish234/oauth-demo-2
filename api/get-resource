@@ -18,13 +18,15 @@ module.exports = function(app){
       }
     app.use(cors(corsOptions));
     app.post('/get-resource', (req, res) => {
-      if (!req.body.token){
+      if (!req.headers.authorization){
         return res.status(422).send({error: 'Missing access token'})
       }
-      const accessToken = req.body.token
-      const valid = validateAccessToken(accessToken)
-      console.log("access token ", accessToken)
-      const details = getPhotoAndName(accessToken)
-      return res.status(200).send(details)
+      const accessToken = req.headers.authorization
+      if (validateAccessToken(accessToken)){
+        const details = getPhotoAndName(accessToken)
+        return res.status(200).send(details)
+      } else {
+        return res.status(401).send({error: 'Invalid access token'})
+      }
     })
 }
